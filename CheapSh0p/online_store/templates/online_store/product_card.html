@@ -1,0 +1,84 @@
+{% extends 'online_store/base.html' %}
+{% load static %}
+{% load product_tags %}
+
+{% block content %}
+<div class="container-fluid header">
+    {%include 'online_store/header.html'%}
+<div class="container-fluid row col-12 photos">
+    <div class="col-5 row" id="imgs">
+        <img name="img" src="{{ product.photo.url }}">
+        <div class="col-12 dop"></div>
+    </div>
+    <div class="col-7">
+        <div class="product_description">
+            <p class="cera_pro" id="product_name">{{product.name}}</p>
+            <p class="cera_pro" id="product_collection"><a href="{{ product.collection.get_absolute_url }}">{{product.collection}}</a></p>
+            <p class="cera_pro" id="value">{{product.price|to_str}}$</p>
+            <p class="cera_pro" id="delivery_info">The price includes delivery</p>
+
+            <div class="container-fluid row col-12" id="global_description">
+                <div class="col-3 descriptions">
+                    <p class="stirring" id="description">Description</p>
+                </div>
+
+                <div class="col-3 descriptions">
+                    <p class="no_stirring" id="characteristics">Characteristics</p>
+                </div>
+
+                <div class="col-3 descriptions">
+                    <p class="no_stirring" id="delivery">Delivery</p>
+                </div>
+
+                <h7 class="description stirring">
+                    {{product.description_print}}
+                </h7>
+
+                <h7 class="characteristics not_stirring">
+                    {{product.type.characteristics}}
+                </h7>
+
+                <h7 class="delivery not_stirring"><br>
+                    {{product.type.delivery}}
+                </h7>
+
+                <div class="col-6" id="choose_size">
+                    <h2 id="choose">Choose size:</h2>
+                    {% for size in product.get_size_list %}
+                        {% if size == 0 %}
+                            <label class="fake size" size_or_color="size"><input type="radio" name="size" checked id="{{size}}"><span class="cera_pro {{size}}" translate="no">{{size}}</span></label>
+                        {% else %}
+                            <label class="fake size" size_or_color="size"><input type="radio" name="size" id="{{size}}"><span class="cera_pro {{size}}" translate="no">{{size}}</span></label>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-6 bottom" id="colors">
+                    <h2 id="color_list">Color:</h2>
+                    {% for color in product.get_color_list %}
+                        {% if color == 0 %}
+                            <label class="fake color" size_or_color="color"><input type="radio" name="color" checked id="{{color}}"><span class="cera_pro color"></span></label>
+                        {% else %}
+                            <label class="fake color" size_or_color="color"><input type="radio" name="color" id="{{color}}"><span class="cera_pro color"></span></label>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <form action='{{ product.get_absolute_url }}' method="post" id="adding_an_item_to_the_cart">
+            {% csrf_token %}
+            <div id="add_form">
+                <input name="add_size">
+                <input name="add_color">
+                <input name="product_id" value="{{product.id}}">
+            </div>
+            <div class="col-6" id="add_to_cart">
+                <button type="submit">
+                    <span for="add_to_card">Add to cart</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script src="{% static 'online_store/js/product_card.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'online_store/catalog.html' %}
+
+{% block optional_addition_for_pagination %}
+{% if filters %}
+    <form method="post" name="collections_form" action="">
+        {% csrf_token %}
+        <input name="filters" value="{{filters_for_paginated}}" style="display: none;">
+        <input name="act_filters" value="{{filters}}" style="display: none;">
+        <input name="page" value="" style="display: none;">
+        <script>
+            form_filters = form.children[1].querySelector("table.price").cloneNode(true);
+            form_filters.style["display"] = "none";
+            collections_form.append(form_filters);
+            let tags_a = document.querySelectorAll(".pages > a");
+            for (tag_a of tags_a){
+                tag_a.onclick = page_click
+            }
+            function page_click(event){
+                let href = event.target.href;
+                event.preventDefault();
+                collections_form.page.value = href.split('?page=')[1];
+                collections_form.submit();
+            }
+        </script>
+    </form>
+{% endif %}
+{% endblock %}

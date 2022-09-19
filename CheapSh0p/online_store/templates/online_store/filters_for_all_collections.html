@@ -1,0 +1,159 @@
+{% load catalog_tags %}
+{% load cache %}
+
+{% if catalog %}
+{% cache 86400 colors_filter_in_filters_column %}
+{% get_catalog_colors catalog as colors%}
+{% get_catalog_sizes catalog as sizes%}
+    <h1><span>Shop by color</span></h1>
+    <table id="color">
+        {% for color in colors%}
+        <tr>
+            <td>
+                <label>
+                    <input class="color" type="checkbox" id="{{color}}" name="color__{{color}}">
+                    <span class="fake"></span>
+                    <span>{{color}}</span>
+                </label>
+            </td>
+        </tr>
+        <tr></tr>
+        {% endfor %}
+    </table>
+    <h1><span>Shop by size</span></h1>
+    <table id="size">
+        {% for size in sizes%}
+        <tr>
+            <td>
+                <label>
+                    <input class="size" type="checkbox" id="{{size}}" name="size__{{size}}">
+                    <span class="fake"></span>
+                    <span>{{size}}</span>
+                </label>
+            </td>
+        </tr>
+        <tr></tr>
+        {% endfor %}
+    </table>
+{% endcache %}
+{% endif %}
+{% cache 86400 filter_without_color_size_and_collections%}
+    <h1><span>Shop by style</span></h1>
+    <table class="type">
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" class="type" id="t-shirt" name="type__t-shirt">
+                    <span class="fake"></span>
+                    <span>T-Short</span>
+                </label>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" class="type" id="hoodie" name="type__hoodie">
+                    <span class="fake"></span>
+                    <span class="style ">Hoodie</span>
+                </label>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" class="type" id="sweatshirt" name="type__sweatshirt">
+                    <span class="fake"></span>
+                    <span class="color">Sweatshirt</span>
+                </label>
+            </td>
+        </tr>
+    </table>
+    <h1><span>Sort by</span></h1>
+    <table id="sort_by">
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="popular" class="sort_by" name="sort_by__popular">
+                    <span class="fake"></span>
+                    <span class="sort by">Popular</span>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="recent" class="sort_by" name="sort_by__recent">
+                    <span class="fake"></span>
+                    <span class="sort by">Recent</span>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="filling_price" class="sort_by" name="sort_by__filling_price">
+                    <span class="fake"></span>
+                    <span class="sort by">Falling in price</span>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="increasing_price" class="sort_by" name="sort_by__increasing_price">
+                    <span class="fake"></span>
+                    <span class="sort by">Increasing in price</span>
+                </label>
+            </td>
+        </tr>
+    </table>
+{% endcache %}
+    <h1><span>Price</span></h1>
+        <table class="price">
+            <tr>
+                <td>
+                    <label>
+                        <span>min price</span>
+                        {% if min_product_price %}
+                            <input type="number" step="0.01" class="price" value="{{min_product_price}}" id="min_price" name="min_price">
+                        {% else %}
+                            <input type="number" step="0.01" class="price" value="0" id="min_price" name="min_price">
+                        {% endif %}
+                    </label>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    <label>
+                        <span class="style ">max price</span>
+                        {% if max_product_price %}
+                            <input type="number" step="0.01" class="price" value={{max_product_price}} id="max_price" name="max_price">
+                        {%else%}
+                            <input class="price" step="0.01" value="max" id="max_price" name="max_price">
+                        {%endif%}
+                    </label>
+                </td>
+            </tr>
+            <tr></tr>
+        </table>
+{% cache 86400 collections%}
+<div id="collections">
+<h1 id="off"><span>Shop by collection</span></h1>
+    <table id="collection">
+        {% for collection in all_public_collections%}
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" class="collection" id="{{collection.name}}" name="collection__{{collection.name}}">
+                    <span class="fake"></span>
+                    <span class="collection_name">{{collection.name}}</span>
+                </label>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endcache %}

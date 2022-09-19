@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  db:
+    container_name: db
+    env_file:
+      - ./.env
+    image: "postgres:14"
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data/"
+  chp_shp:
+    build: "."
+    command: "python /CHEAP.P/CheapSh0p/manage.py runserver 0.0.0.0:8000"
+    container_name: chp_shp
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    ports:
+      - "0.0.0.0:8000:8000"
+    volumes:
+      - ".:/code"
+volumes:
+  postgres_data:

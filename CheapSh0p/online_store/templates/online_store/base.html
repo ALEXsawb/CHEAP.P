@@ -1,0 +1,19 @@
+<!-- css -->
+
+<!DOCTYPE html>
+{% load static %}
+{% load product_tags %}
+<html>
+<head>
+	<title>{{title}}</title>
+	<link type="text/css" href="{% static 'online_store/css/'|add:css %}" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="{% static 'online_store/css/bootstrap-grid.min.css' %}">
+	<link rel="shortcut icon" href="{% static 'online_store/images/pages/header/star.png' %}">
+	<meta http-equiv="Content-Type" content="text/html"; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

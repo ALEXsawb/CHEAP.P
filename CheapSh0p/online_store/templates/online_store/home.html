@@ -1,0 +1,183 @@
+{% extends 'online_store/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid header">
+        {% include 'online_store/header.html' %}
+        <div class="container-fluid go_to_catalog">
+            <div class="row">
+            <div class="col-5">
+                <h1>CREATIVE PRINTS</h1>
+                <h1>FOR EVERY</h1>
+                <h1>TASTE</h1>
+                <div class="span">
+                <span>A range of t-shirts featuring a huge variety of
+                    original designs in sizes XS-XXXL</span>
+                </div>
+                <div class="button">
+                    <a href="/catalog">
+                        <button id="Catalog" type="button">
+                            <span for="Catalog">Catalog</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid popular_clothing">
+        <div class="container-fluid row col-12 container_for_text">
+        <div class="col-3">
+        </div>
+            <div class="col-9 text">
+            <h1 id="popular">POPULAR UNISEX CLOTHING</h1>
+            <span>Large selection of &#160<span class="color"> sizes!</span></span>
+        </div>
+        </div>
+            <div class="container-fluid row col-12 row_with_product p_hover">
+                {% for product in top_clothing%}
+                    <div class="col-3">
+                        <a href="{{ product.get_absolute_url }}"><img src="{{ product.photo.url }}"><p>{{product.name|upper}}</p></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid row col-12 row_with_product top-hot">
+        <div class="col-6 sliders">
+            <h1 id="hot">COLLECTION HOT</h1>
+            <span>Delivery is included in the &#160<span class="color">price!</span></span>
+		<input checked type="radio" name="respond" id="desktop">
+			<article id="slider">
+					<input checked type="radio" name="slider" id="switch1">
+					<input type="radio" name="slider" id="switch2">
+					<input type="radio" name="slider" id="switch3">
+				<div id="slides">
+					<div id="overflow">
+						<div class="image">
+                            {% for product in hot_collection_products%}
+							    <article><img src="{{ product.photo.url }}"></article>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+				<div id="controls">
+					<label for="switch1"></label>
+					<label for="switch2"></label>
+					<label for="switch3"></label>
+				</div>
+				<div id="active">
+					<label for="switch1"></label>
+					<label for="switch2"></label>
+					<label for="switch3"></label>
+				</div>
+			</article>
+        </div>
+        <div class="col-6 description">
+            <h2>{{hot_collection.name}}</h2>
+            <p>Collection description</p>
+            {% for product in hot_collection_products %}
+                {% if product.description_print != None %}
+                    <h3 class="collection">{{product.name|upper}}</h3>
+                    <p>{{ product.description_print|upper }}</p>
+                {% endif %}
+            {% endfor %}
+            <div class="go_to_collection">
+                <button id="go_to_collection" type="button">
+                    <a href="{{ hot_collection.get_absolute_url }}">
+                    <span for="go_to_collection">Go to collection</span>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid row col-12 about_us">
+        <div class="col-5">
+            <h1 id="who">WHO ARE WE?</h1>
+            <p>Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас Что-то о нас
+            </p>
+        </div>
+        <div class="col-7"></div>
+    </div>
+    <div class="container-fluid row col-12 social_networks">
+        <div class="col-4 iphones">
+            <img src="{% static 'online_store/images/pages/iphones x.png' %}">
+        </div>
+        <div class="col-8">
+            <div class="text">
+            <h1 id="networks">Follow to our instagram</h1>
+            <p>Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях
+            Что-то о наших соц сетях Что-то о наших соц сетях Что-то о наших соц сетях </p>
+            </div>
+            <div class="button">
+                <button type="button">
+                    <a href="https://www.instagram.com/cheap_sh0pp/">
+                        <span>Follow</span>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <!--<script>
+        let sliders = document.querySelector("div.sliders")
+        let windowWidth = document.documentElement.clientWidth
+        window.onresize = function( event ) {
+            console.log(sliders)
+            console.log(document.documentElement.clientWidth)
+            if ( windowWidth < 735){
+                try{
+                    console.log("DF", div.sliders.classList)
+                    sliders.classList.remove("col-6")
+                    sliders.classList.add("col-12")
+                }
+                catch{}
+                about_us = document.querySelector("div.about_us")
+                console.log(about_us)
+                about_us.children[0].classList.remove("col-5")
+                about_us.children[0].classList.add("col-8")
+                about_us.children[1].classList.remove("col-7")
+                about_us.children[1].classList.add("col-4")
+            }
+            else{
+                console.log("fff", document.querySelector("div.sliders").classList.remove("col-6"))
+                if (document.querySelector("div.sliders").classList.remove("col-6") === undefined){
+                    try{
+                        console.log("DF", div.sliders.classList)
+                        sliders.classList.remove("col-12")
+                    }
+                    catch{
+                        sliders.classList.add("col-6")
+                    }
+                    /*about_us = document.querySelector("div.about_us")
+                    console.log(about_us)
+                    about_us.children[0].classList.add("col-5")
+                    about_us.children[0].classList.remove("col-8")
+                    about_us.children[1].classList.add("col-7")
+                    about_us.children[1].classList.remove("col-4")
+                    */
+                }
+            }
+        }
+    </script>-->

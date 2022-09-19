@@ -1,0 +1,289 @@
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('fonts/CareProRegular/CeraPro-Regular.eot');
+    src: url('fonts/CareProRegular/CeraPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/CareProRegular/CeraPro-Regular.woff2') format('woff2'),
+        url('fonts/CareProRegular/CeraPro-Regular.woff') format('woff'),
+        url('fonts/CareProRegular/CeraPro-Regular.ttf') format('truetype'),
+        url('fonts/CareProRegular/CeraPro-Regular.svg#CeraPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cera Pro Bold';
+    src: url('fonts/CareProRegular/CeraPro-Bold.eot');
+    src: url('fonts/CareProRegular/CeraPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/CareProRegular/CeraPro-Bold.woff2') format('woff2'),
+        url('fonts/CareProRegular/CeraPro-Bold.woff') format('woff'),
+        url('fonts/CareProRegular/CeraPro-Bold.ttf') format('truetype'),
+        url('fonts/CareProRegular/CeraPro-Bold.svg#CeraPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body{
+    background: url("../images/pages/product_card_background.jpg") top no-repeat;
+    background-size: cover;
+}
+
+.cera_pro{
+    color: #fff;
+    font-family: "Cera Pro", kyrial-display-pro, sans-serif;
+}
+
+.cera_bold{
+    color: #fff;
+    font-family: "Cera Pro Bold", kyrial-display-pro, sans-serif;
+}
+
+
+
+div.basket{
+margin: 0 0;
+padding: 0 0;
+margin-bottom: auto;
+}
+
+a{
+text-decoration: none;
+}
+
+header{
+margin: 0 0;
+padding: 2.084% 0 0 4.687%;
+}
+
+
+header div.menu a img{
+height: 30px;
+}
+
+header div.menu ul img, header div.menu ul a{
+height: 19px;
+}
+
+div#header_phone{
+    display: none;
+}
+
+header div.menu ul{
+margin: 0 0;
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+}
+
+header div.menu li{
+padding: 0.521% 3.386% 0 0;
+list-style-type: none;
+}
+
+header div.menu li a{
+text-decoration: none;
+}
+
+header div.menu li span{
+    margin-top: 100%;
+    font-family: "Cera Pro", kyrial-display-pro, sans-serif;
+    color: #ffffff;
+    font-size: 125%;
+}
+
+div.col-8 h1{
+    margin-top: 12.5%;
+}
+
+header div.menu li a.basket{
+    padding-right: 25px;
+}
+
+
+
+
+div.photos, div.photos div.col-7, div#global_description{
+    margin: 0 0;
+    padding: 0 0;
+}
+
+
+div#imgs{
+    padding: 2.084% 0 0 4.687%;
+}
+
+div#imgs img{
+    width: 100%;
+}
+
+div#imgs div{
+    width:100%;
+}
+
+div#imgs div.col-3{
+    padding-top: 5%;
+}
+
+div.product_description{
+    padding-left:7%;
+}
+
+div.product_description #product_name{
+    margin: 0 0;
+    padding-top: 2.5%;
+    font-size: 215%;
+}
+
+#product_collection{
+    margin: 0 0;
+    color: #af1915;
+    font-size: 175%;
+}
+
+#product_collection a{
+   color: #af1915;
+   text-decoration: none;
+}
+
+#value{
+    margin: 7% 0 0 0;
+    font-size:150%;
+}
+
+#delivery_info{
+    margin-bottom: 7%;
+}
+
+
+input[type=radio]{
+    display: none;
+}
+
+.action{
+    box-shadow: inset 0 0 5px 5px rgb(13, 59, 72);
+    transition: .2s;
+    color: #fff;
+    border: solid 2px #21bbe7;
+}
+
+#choose, #color_list{
+    font-family: "Cera Pro", kyrial-display-pro, sans-serif;
+    color: #ffffff;
+    font-weight: normal;
+    margin-top: 15%;
+}
+
+div[id=choose_size], div[id=colors]{
+    padding: 0 0;
+    margin-top: 3%;
+}
+
+div[id=choose_size] label, div[id=colors] label{
+    margin-right: 1.5%;
+}
+
+label{
+padding: 7px 0;
+border: solid 2px #21bbe7;
+box-shadow: 0 0 2px 0 rgb(13, 75, 92), inset 1px 1px 0 0px rgb(23, 132, 163);
+}
+
+label span.S{
+    margin: 0 11px;
+}
+
+label span.M{
+    margin: 0 10px;
+}
+
+label span.L{
+    margin: 0 11px;
+}
+
+label span.XL{
+    margin: 0 7px;
+}
+
+label[size_or_color=color]{
+    padding: 7px 15px;
+}
+
+h7{
+    width: 100%;
+}
+
+div.descriptions{
+    font-family: "Cera Pro", kyrial-display-pro, sans-serif;
+    padding: 0 0;
+}
+
+div.descriptions p{
+    cursor: default;
+}
+
+#description, #characteristics, #delivery{
+    font-size: 140%;
+}
+
+.stirring{
+    font-family: "Cera Pro", kyrial-display-pro, sans-serif;
+    color: #fff;
+    margin-top: 0;
+}
+
+.not_stirring{
+    display: none;
+}
+
+.no_stirring{
+    margin-top: 0;
+    color: #808080;
+}
+
+button:active, button:focus{
+    outline: 0;
+    outline-offset: 0;
+}
+
+div#add_to_cart{
+margin-top: 5%;
+padding: 0 0 0 2%;
+}
+
+div#add_to_cart button{
+    font-size:200%;
+    background: transparent;
+    color: #fff;
+    border: 0;
+    padding: 0 0;
+}
+
+div#add_to_cart button{
+    padding: 0 0 0 10%;
+    text-align: left;
+    width: 100%;
+}
+
+div#add_to_cart:hover{
+    width: 100%;
+    background:url("../images/кнопка_basket.png") left  no-repeat;
+    background-size: cover;
+}
+
+div#add_form{
+    display: none;
+}
+
+.flash.error{
+    color: #af1915;
+}
+
+.flash.warning{
+    color: #21bbe7;
+}
+
+.flash.info{
+    color: #fff;
+}

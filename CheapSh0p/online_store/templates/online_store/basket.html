@@ -1,0 +1,152 @@
+{% extends 'online_store/base.html' %}
+{% load static %}
+{% load product_tags %}
+{% load delivery_tags %}
+
+{% block content %}
+{% include 'online_store/header.html' %}
+<div class="container-fluid row col-12 cart">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h1 id="my_cart">MY CART</h1>
+        <h2 id="order_status_h2">ORDERS STATUS DATA</h2>
+        <p>Make purchases <span>without leaving</span> home</p>
+        <div class="col-12 row top_basket">
+            <div class="col-6"><img src="{% static 'online_store/images/pages/basket.png' %}"> Order</div>
+            <div class="col-6"><p class="text">Seller &#160<span>Cheap.Shopp</span></p></div>
+            <div name="order_form_errors">
+            {% if form.order_form.errors %}
+                <h4><center>The order was not completed because errors were made when filling in the contact details,
+                    the errors will be indicated below. Please try again after fixing the errors, if the problem persists, you can contact us.</center></h4>
+                {% for field in form.order_form %}
+                    {% if field.errors%}
+                        <h5 class="order_form_errors"><center>{{ field.errors.as_text|cut:"* " }}</center></h5>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        </div>
+        {% if list_orders %}
+            <div id="all_orders">
+                {% for number_order, products in list_orders.items%}
+                    <h1>{{number_order}}</h1>
+                    {% for product in products %}
+                        {{product.product__name}} | {{product.product__collection__name}} | {{product.product__type__type}}
+                        <br>
+                        {{product.size}}
+                        {{product.color}}
+                        {{product.quantity}}
+                        <br>
+                        <br>
+                    {% endfor %}
+                    <br>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="col-12 row cart" id="not_orders">
+                <h1>YOU HAVE NO ORDERS</h1>
+                {% if messages %}
+                    {% for message in messages %}
+                    <h4 {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message.message }}
+                    </h4>
+                    {% endfor %}
+                {% endif %}
+                <form  action="{% url 'get_email_for_restore_basket_data' %}" method="post">
+                    {% csrf_token %}
+                    {{form_for_restore_basket_data}}
+                    <button type="submit">Auth</button>
+                </form>
+            </div>
+        {% endif %}
+        <div>
+            <div class="col-12 carts">
+                {% if basket %}
+                    {% for product in basket %}
+                            <div class="col-12 row cart">
+                                <div class="col-3 img"><img class="cart_photo" src="{{product.photo.url}}"></div>
+                                <div class="col-9 row">
+                                    <div class="col-6 row name_collection {{product.id}}"><a href="/catalog/{{product.collection.slug}}"><span>{{product.collection.name|upper}}</span></a></div>
+                                    <div class="col-2 name_print"><a href="/catalog#{{product.collection.slug}}|{{product.slug}}"><span>{{product.name|upper}}</span></a></div>
+                                    <div class="col-1"></div>
+                                    <div class="col-2"></div>
+                                    <div class="col-4 row size color">
+                                        <div class="col-6">
+                                            <p>Size</p>
+                                            <div name="size">
+                                                <span translate="no">{{product.size}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Color</p>
+                                            <div name="color">
+                                                <span translate="no">{{product.color}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1"></div>
+                                    <div class="col-2 quantity">
+                                        <p>Quantity</p>
+                                        <div class="row col_product">
+                                            <div class="col-3 bucket_or_minus"><input name="minus" src="{% static 'online_store/images/pages/basket/bucket.png' %}" type="image"></div>
+                                            <div class="col-6 col_this_product"><input name="col" maxlength="10" type="text" value="{{product.quantity|to_str}}"></div>
+                                            <div class="col-3 plus"><input name="plus" src="{% static 'online_store/images/pages/basket/plus.png' %}" type="image"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1"></div>
+                                    <div class="col-2 price">
+                                        <p>Price</p>
+                                        <span name="price">{{product.price|to_str}}$</span>
+                                    </div>
+                                    <div class="col-1 amount">
+                                        <p>Amount</p>
+                                        <p class="manny">{{product.total_price|to_str}}$</p>
+                                    </div>
+                                </div>
+                            <fieldset style="display:none" name="{{product.id}}" for="111">
+                                <legend>{{product.id}}</legend>
+                                {% show_categories product as orders%}
+                                {{orders.as_p}}
+                            </fieldset>
+                            </div>
+                        <div class="col-12 row cart_put"></div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 row cart" id="not_basket">
+                        <h1>YOU HAVE NO PRODUCT IN YOUR CART</h1>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+        {% if basket %}
+            <div class="col-12 row BUY">
+                    <div class="col-8"></div>
+                    <div class="col-1 TO_PAY"><span>TO</span> PAY <span>:</span></div>
+                    <div class="col-1 SUM">
+                        <span class="manny"></span>
+                    </div>
+                    <div class="col-2"></div>
+
+                    <div class="col-8"></div>
+                    <div class="col-3">
+                        <div class="check_out" id="check_out">
+                            <form action="{% url 'basket' %}"  method="post" id="111">
+                                {% csrf_token %}
+                                <div style="display:none" id="order"></div>
+                            </form>
+                                <button type="submit">
+                                    <span>Checkout</span>
+                                </button>
+                        </div>
+                    </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="col-2"></div>
+        {% endif %}
+    {% block delivery_clearance %}
+        {% include 'online_store/delivery_clearance.html' %}
+    {% endblock %}
+</div>
+<script src="{% static 'online_store/js/basket.js' %}"></script>
+{% endblock %}

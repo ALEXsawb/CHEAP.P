@@ -1,0 +1,88 @@
+{% extends 'online_store/base.html' %}
+
+
+
+{% block content %}
+<div class="container-fluid header">
+        {% include 'online_store/header.html' %}
+</div>
+<div class="container-fluid catalog">
+    <section class="catalog">
+        <p>UNISEX CLOTHING CATALOG</p>
+        <span class="Filters">Filters</span><a href="/catalog" class="clothing">All clothing</a><a href="/" class="Sets">Sets</a>
+        <div class="col-12 filters"></div>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 ShopBy">
+                <form id="form" method="post" action="/catalog/collections">
+                    {% csrf_token %}
+                <div class="ShopBy_table">
+                    {% include 'online_store/filters_for_all_collections.html' %}
+                </div>
+                    <div>
+                        <button id="all good" for="form" type="submit">
+                            <span for="all good">All good</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-10 all_clothing">
+                {% block catalog %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+<div id="filters" style="display:none">
+    {% if filters %}
+        {% for filter in filters %}
+            <input id="{{filter}}">
+        {% endfor %}
+    {% endif %}
+</div>
+<script>
+    collection.previousElementSibling.onclick = function(event){
+        console.log(event.currentTarget);
+        if (event.currentTarget.id != 'on'){
+            event.currentTarget.id = 'on';
+            console.log(event.currentTarget)
+            event.currentTarget.nextElementSibling.style['display'] = 'flex';
+        }
+        else{
+            event.currentTarget.id = 'off';
+            event.currentTarget.nextElementSibling.style['display'] = 'none';
+        }
+    }
+
+
+    color = form.querySelectorAll("table#color input")
+    size = form.querySelectorAll("table#size input")
+    type = form.querySelectorAll("table.type input")
+    sort_by = form.querySelectorAll("table#sort_by input")
+    collection = form.querySelectorAll("table#collection input")
+
+    for (filter_site of filters.querySelectorAll("input")){
+        console.log(filter_site)
+        try{filter = filter_site.id.split("__")}
+        catch{filter = filter_site.name.split("__")}
+        class_filter = filter[0];
+        filter_name = filter[1];
+        eval(`for (filter_inp of ${class_filter}){
+            if (class_filter != 'type'){
+                if (filter_name == filter_inp.getAttribute('id')){
+                    document.getElementById(filter_name).checked = true
+                    break;
+                }
+            }
+            else{
+                console.log(filter_name)
+                 if (filter_name == filter_inp.getAttribute('name').split("__")[1]){
+                    document.getElementById(filter_name).checked = true
+                    break;
+                }
+            }
+        }`);
+    };
+</script>
+{% endblock %}

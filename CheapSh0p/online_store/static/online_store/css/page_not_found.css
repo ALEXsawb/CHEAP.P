@@ -1,0 +1,29 @@
+body{
+    color: #ffffff;
+    font-family: "Cera Pro", sans-serif;
+    background: url("../images/pages/background.jpg") top repeat;
+    background-size: cover;
+}
+
+
+div#content{
+    padding: 20% 0;
+}
+
+
+div#error_text{
+    font-size: 300%;
+}
+
+
+div#error_code{
+    color: #21bbe7;
+    font-size: 430%;
+}
+
+
+div#content a{
+    font-size: 135%;
+    text-decoration: none;
+    color: #af1915;
+}

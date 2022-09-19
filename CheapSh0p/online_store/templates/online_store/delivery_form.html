@@ -1,0 +1,64 @@
+{% extends 'online_store/base.html' %}
+{% load delivery_tags %}
+{% load static %}
+
+{% block content %}
+
+    <div id="order_address" style="display: none;">
+        <div class="row container-fluid">
+            <div class="col-6">
+                <h3>Shipping Address</h3>
+                <fieldset for="111" name="order_1" id="order_1">
+                <h5><span>Full</span> name</h5>
+                <input name="full_name" type="text"></label>
+                <h5><span>Email</span></h5>
+                <input name="email" type="email"></label>
+                <h5><span>Address</span> line 1</h5>
+                <input name="address_1" type="text"></label>
+                <h5><span>Address</span> line 2(optional)</h5>
+                <input name="address_2" type="text"></label>
+                <h5><span>Country</span></h5>
+                <input name="c_o_u_n_t_r_y" type="text"></label>
+                <h5><span>Postal/Zip</span> code</h5>
+                <input name="postal_or_zip_code" type="text"></label>
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <div id="divX">
+                    <span >
+                        <img id="X" src="{% static 'online_store/images/pages/basket/X.png' %}">
+                    </span>
+                </div>
+                <fieldset for="111" name="order_2" id="order_2">
+                <h5><span>Order</span> number (optional)</h5>
+                <input name="order_number" type="text"></label>
+
+                <h5><span>City</span></h5>
+                <input name="city" type="text"></label>
+
+                <h5><span>Company</span> (optional)</h5>
+                <input name="company" type="text"></label>
+
+                <h5><span>Phone</span> (optional) <span id="info_about_phone">Only used for delivery, not marketing</span></h5>
+                <select name="region_phone" id="region_phone">select a regional number</select>
+                <input id="phone" name="phone_number" type="text"></label>
+                    <div id="region">
+                        <input id="search" type="text" placeholder="поиск">
+                        <div id="region_phone_list">
+                            {% for country_number in country_numbers %}
+                                <option><span id="number">{{country_number.region_number}}</span>  <span id="country">{{country_number.country}}</span></option>
+                            {% endfor %}
+                        </div>
+                    </div>
+                <br>
+                </fieldset>
+                <div id="sum_plus_delivery"></div>
+                <div id="pay">
+                    <button type="submit" id="BUY">
+                        <span>BUY</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

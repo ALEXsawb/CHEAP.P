@@ -1,0 +1,11 @@
+/venv
+/Dockerfile
+/.gitignore
+/.idea
+/.git
+CheapSh0p/cache
+CheapSh0p/htmlcov
+CheapSh0p/online_store/migrations/*
+CheapSh0p/API_online_store/migrations/*
+!CheapSh0p/online_store/migrations/__init__.py
+!CheapSh0p/API_online_store/migrations/__init__.py

@@ -1,0 +1,31 @@
+{% extends 'online_store/catalog_base.html' %}
+{% load delivery_tags %}
+
+{% block catalog %}
+
+    {% for collection in catalog%}
+        {% include 'online_store/collection row.html' %}
+    {% endfor %}
+
+
+
+
+    <div class="col-12 pages" style="text-align:center">
+    {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}">&lt;</a>
+    {% endif %}
+    {% for page in page_obj.paginator.page_range %}
+        {% if page == page_obj.number %}
+            <a id="action" href="?page={{page}}">{{page}}</a>
+        {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+            <a href="?page={{page}}">{{page}}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">&gt;</a>
+    {% endif %}
+
+    {% block optional_addition_for_pagination %}
+    {% endblock %}
+</div>
+{% endblock %}

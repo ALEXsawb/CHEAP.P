@@ -1,0 +1,20 @@
+<fieldset name="{{collection.name}}">
+    <div class="container-fluid">
+        <div class="row">
+            {% for product in collection %}
+            <div class="col-4" id="{{product.collection.slug|add:'|'}}{{product.slug}}">
+                <a href="{{product.get_absolute_url}}">
+                    <div class="description">
+                        <div>
+                            <h4 class="collection"><span>{{collection.name}}</span></h4>
+                            <h4 class="name"><span>{{product.name}}</span></h4>
+                        </div>
+                        <h4 class="price">{{product.price}}$</h4>
+                    </div>
+                    <img src="{{product.photo.url}}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</fieldset>

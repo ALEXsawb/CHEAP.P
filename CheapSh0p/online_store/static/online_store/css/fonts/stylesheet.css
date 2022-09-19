@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('CeraPro-Regular.eot');
+    src: url('CeraPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CeraPro-Regular.woff2') format('woff2'),
+        url('CeraPro-Regular.woff') format('woff'),
+        url('CeraPro-Regular.ttf') format('truetype'),
+        url('CeraPro-Regular.svg#CeraPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('CeraPro-Bold.eot');
+    src: url('CeraPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CeraPro-Bold.woff2') format('woff2'),
+        url('CeraPro-Bold.woff') format('woff'),
+        url('CeraPro-Bold.ttf') format('truetype'),
+        url('CeraPro-Bold.svg#CeraPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('CeraPro-Regular_1.eot');
+    src: url('CeraPro-Regular_1.eot?#iefix') format('embedded-opentype'),
+        url('CeraPro-Regular_1.woff2') format('woff2'),
+        url('CeraPro-Regular_1.woff') format('woff'),
+        url('CeraPro-Regular_1.ttf') format('truetype'),
+        url('CeraPro-Regular_1.svg#CeraPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

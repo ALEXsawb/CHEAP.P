@@ -1,0 +1,21 @@
+{% load static %}
+
+<header>
+<div class="row no-gutters menu">
+    <div class="col-3">
+        <a href="{% url 'home' %}#p1"><img src="{% static 'online_store/images/pages/header/Cheap.P.png' %}"></a>
+    </div>
+    <div class="col-9">
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}#popular"><img src="{% static 'online_store/images/pages/header/star.png' %}"><span> Popular</span></a></li>
+                <li><a href="{% url 'home' %}#who"><img src=""><span>?Who are we</span></a></li>
+                <li><a href="{% url 'home' %}#hot"><img src="{% static 'online_store/images/pages/header/colaction.png' %}"><span> Collection HOT</span></a></li>
+                <li><a href="{% url 'home' %}#networks"><img src="{% static 'online_store/images/pages/header/social_networks.png' %}"><span> Contacts</span></a></li>
+                <li><a href="/basket" class="basket"><img src="{% static 'online_store/images/pages/basket.png' %}"></a></li>
+            </ul>
+        </nav>
+    <div id="header_phone"><img src="{% static 'online_store/images/pages/header/burger_close.png' %}"></div>
+    </div>
+</div>
+</header>

@@ -1,0 +1,58 @@
+{% load delivery_tags %}
+{% load static %}
+{% load cache %}
+
+<div id="order_address" style="display: none;">
+    <div class="row container-fluid">
+        <div class="col-6">
+            <h3>Delivery clearance</h3>
+            <fieldset for="111" name="order_1" id="order_1">
+                {% csrf_token %}
+                {% for field in form.order_form %}
+                    {% if field.name != 'email' and field.name != 'phone'%}
+                        <label for="{{field.id_for_label}}">
+                            <h5><span>{{ field.label|from_label_to_span_text }}</span> {{ field.label|from_label_to_h5_text }}</h5>
+                            {{field}}
+                        </label>
+                    {% elif field.name == 'email' %}
+                        </fieldset>
+                            </div>
+                            <div class="col-6">
+                                <div id="divX">
+                                    <span >
+                                        <img id="X" src="{% static 'online_store/images/pages/basket/X.png' %}">
+                                    </span>
+                                </div>
+                        <fieldset for="111" name="order_2" id="order_2">
+                            {% csrf_token %}
+                            <label for="{{field.id_for_label}}">
+                                <h5><span>{{field.label}}</span></h5>
+                                    {{field}}
+                                </label>
+                    {% elif field.name == 'phone' %}
+                            <h5><span>Phone</span> (optional) <span id="info_about_phone">Only used for delivery, not marketing</span></h5>
+                            <select name="region_phone" id="region_phone">select a regional number</select>
+                            {{field}}
+                            <div id="region">
+                            <input id="search" type="text" placeholder="поиск">
+                                <div id="region_phone_list">
+                                    {% cache 86400 country_numbers %}
+                                    {% for country_number in country_numbers %}
+                                        <option><span id="number">{{country_number.region_number}}</span>  <span id="country">{{country_number.country}}</span></option>
+                                    {% endfor %}
+                                    {% endcache %}
+                                </div>
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <div id="sum_plus_delivery"></div>
+            </fieldset>
+            <div id="pay">
+            <button type="submit" id="BUY" for="111">
+                <span>BUY</span>
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
